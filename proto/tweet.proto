@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package tweet;
+
+option go_package = "./pb";
+
+service TweetService {
+  rpc GetAllTweet(Empty) returns (Tweets) {};
+  rpc CreateTweet(Tweet) returns (Empty) {};
+  rpc GetTweetById(TweetByIdRequest) returns (Tweets) {};
+  rpc DeleteTweetById(TweetByIdRequest) returns (Empty) {};
+  // rpc GetTweetTimeline() returns () {};
+}
+
+message Tweet {
+  int64 id = 1;
+  int64 user_id = 2;
+  string content = 3;
+  //TODO: 実装予定
+  // date time_stamp = 4;
+}
+
+message Tweets {
+  repeated Tweet tweets = 1;
+}
+
+message TweetByIdRequest {
+  int64 tweet_id = 1;
+}
+
+message Empty {
+}
